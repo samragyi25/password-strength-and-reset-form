@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>Password Strength and Reset</title>
+<link rel="stylesheet" href="stylee.css">
+</head>
+<body align="center">
+<h1>Password strength and reset form</h1>
+
+<script>
+function data() {
+    var a = document.getElementById("n1").value;  // email
+    var b = document.getElementById("n2").value;  // new password
+    var c = document.getElementById("n3").value;  // confirm password
+
+    if (a == "" || b == "" || c == "") {
+        alert("All fields are necessary!");
+        return false;
+    }
+else if (b.length < 8&& b.length>8) {
+        alert("Password must be at least 8 characters long!");
+        return false;
+    }
+
+
+   
+    let hasUpper = false;
+    let hasLower = false;
+    let hasDigit = false;
+    let hasSpecial = false;
+    const specialChars = "!@#$%^&*()_+-={}[]|:;\"'<>,.?/";
+
+    for (let i = 0; i < b.length; i++) {
+        let ch = b.charAt(i);
+
+        if (ch >= 'A' && ch <= 'Z') hasUpper = true;
+        else if (ch >= 'a' && ch <= 'z') hasLower = true;
+        else if (ch >= '0' && ch <= '9') hasDigit = true;
+        else if (specialChars.includes(ch)) hasSpecial = true;
+    }
+
+    if (!hasUpper) {
+        alert("Password must contain at least one UPPERCASE letter!");
+        return false;
+    } 
+    else if (!hasLower) {
+        alert("Password must contain at least one lowercase letter!");
+        return false;
+    } 
+    else if (!hasDigit) {
+        alert("Password must contain at least one digit!");
+        return false;
+    }
+    else if (!hasSpecial) {
+        alert("Password must contain at least one special character!");
+        return false;
+    }
+
+    if (b !== c) {
+        alert("Password mismatched!");
+        return false;
+    }
+
+    alert("Password accepted!");
+    return true;
+}
+</script>
+
+<form onsubmit="return data()" action="abc.html">
+    Email ID: <input type="text" id="n1"><br><br>
+    New Password: <input type="password" id="n2"><br><br>
+    Confirm Password: <input type="password" id="n3"><br><br>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
